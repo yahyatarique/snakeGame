@@ -1,5 +1,7 @@
 import { pauseGame } from './game.js';
 
+const gameBoard = document.getElementById('game-board');
+
 let inputDirection = { x: 0, y: 0 };
 let lastInputDirection = { x: 0, y: 0 }
 
@@ -71,7 +73,7 @@ function handleSwipeEvents(swipeStart, swipeEnd) {
 }
 let swipeStart, swipeEnd;
 
-window.addEventListener('touchstart', (e) => {
+gameBoard.addEventListener('touchstart', (e) => {
     e.preventDefault();
     swipeStart = {
         x: e.touches[0].clientX,
@@ -79,7 +81,7 @@ window.addEventListener('touchstart', (e) => {
     }
 })
 
-window.addEventListener('touchend', (e) => {
+gameBoard.addEventListener('touchend', (e) => {
     e.preventDefault();
     swipeEnd = {
         x: e.changedTouches[0].clientX,

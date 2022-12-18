@@ -72,6 +72,7 @@ function handleSwipeEvents(swipeStart, swipeEnd) {
 let swipeStart, swipeEnd;
 
 window.addEventListener('touchstart', (e) => {
+    e.preventDefault();
     swipeStart = {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY
@@ -79,6 +80,7 @@ window.addEventListener('touchstart', (e) => {
 })
 
 window.addEventListener('touchend', (e) => {
+    e.preventDefault();
     swipeEnd = {
         x: e.changedTouches[0].clientX,
         y: e.changedTouches[0].clientY

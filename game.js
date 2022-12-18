@@ -47,7 +47,7 @@ function draw() {
     levelBoard.innerText = `Level ${getScores().level}`;
 
     // Drawing elements
-    drawHighScore(gameBoard);
+    // drawHighScore(gameBoard);
     drawEnemyNextPath(gameBoard);
     drawEnemy(gameBoard);
     drawFood(gameBoard);

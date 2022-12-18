@@ -1,7 +1,7 @@
 import {equalPositions} from './snake.js';
 import { getGridSize } from './grid.js';
 
-const maxNumberOfEnemies = 0;
+const maxNumberOfEnemies = 2;
 
 let enemies = [];
 let directionVectors = [];

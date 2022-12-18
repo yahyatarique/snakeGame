@@ -46,28 +46,28 @@ export function getExpansionRate() {
     return EXPANSION_RATE;
 }
 
-export function getHighScore() {
-    let highScore; 
+// export function getHighScore() {
+//     let highScore; 
     
-    if(localStorage.highScore) {
-        highScore = localStorage.getItem('highScore');
-    }
+//     if(localStorage.highScore) {
+//         highScore = localStorage.getItem('highScore');
+//     }
 
-    if (highScore < score) {
-        highScore = score;
-        localStorage.setItem('highScore', highScore);
-    }
-    // if (score > highScore) highScore = score;
-    // if (highScore) highScore = (localStorage.getItem('highScore'));
-    // localStorage.setItem('highScore', highScore);
-    // console.log(highScore);
-    return highScore;
-}
+//     if (highScore < score) {
+//         highScore = score;
+//         localStorage.setItem('highScore', highScore);
+//     }
+//     // if (score > highScore) highScore = score;
+//     // if (highScore) highScore = (localStorage.getItem('highScore'));
+//     // localStorage.setItem('highScore', highScore);
+//     // console.log(highScore);
+//     return highScore;
+// }
 
-export function drawHighScore(gameBoard) {
-    const highScoreElem = document.createElement('div');
-    highScoreElem.innerText = getHighScore();
-    highScoreElem.classList.add('high-score','flex');
-    // highScoreElem.style.backgroundColor = 'rgba(100, 100, 100, 0.2)';
-    gameBoard.appendChild(highScoreElem);
-}
+// export function drawHighScore(gameBoard) {
+//     const highScoreElem = document.createElement('div');
+//     highScoreElem.innerText = getHighScore();
+//     highScoreElem.classList.add('high-score','flex');
+//     // highScoreElem.style.backgroundColor = 'rgba(100, 100, 100, 0.2)';
+//     gameBoard.appendChild(highScoreElem);
+// }

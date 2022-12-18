@@ -220,3 +220,23 @@ body {
     font-size: 3vmin;    
 }
 
+.start {
+    border: 0.5vmin solid hsl(var(--hue), 50%, 50%);
+    background: hsl(var(--hue), 50%, 30%);
+    color: hsl(var(--hue), 50%, 75%);
+    margin-top: 5vmin;
+    font-family: 'Arial', sans-serif;
+    font-size: 5vmin;
+    font-style: bolder;
+    padding: 1vmin 2vmin;
+    border-radius: 1vmin;
+    scale: 1;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.start.started {
+    --hue: 0;
+    scale: 0.8;
+}

@@ -5,11 +5,16 @@ import { outsideGrid, getGridSize } from './grid.js';
 
 let lastRenderTime = 0;
 let gameOver = false;
-let gamePaused = false;
+let gamePaused = true;
+
 const gameBoard = document.getElementById('game-board');
-gameBoard.style.setProperty("--grid-size", getGridSize());
 const scoreBoard = document.getElementById('score');
 const levelBoard = document.getElementById('level');
+const startButton = document.getElementById('start-button');
+
+console.log(startButton);
+
+gameBoard.style.setProperty("--grid-size", getGridSize());
 
 function main(currentTime) {
     if (gameOver) {
@@ -28,6 +33,10 @@ function main(currentTime) {
         if (!gameOver) draw();
     }
 }
+
+startButton.addEventListener('click', (e) => {
+    startGame();
+});
 
 window.requestAnimationFrame(main);
 
@@ -65,10 +74,22 @@ function checkDeath() {
 export function pauseGame() {
     if(!gamePaused) {
         gamePaused = true;
-        console.log(`gamePaused: ${gamePaused}`)
+        // console.log(`gamePaused: ${gamePaused}`)
     } else {
         gamePaused = false;
         window.requestAnimationFrame(main);
-        console.log(`gamePaused: ${gamePaused}`)
+        // console.log(`gamePaused: ${gamePaused}`)
     }
+}
+
+function startGame() {
+    if(gamePaused) {
+        gamePaused = false;
+        window.requestAnimationFrame(main);
+        startButton.innerText = 'Pause Game'
+    } else {
+        gamePaused = true;
+        startButton.innerText = 'Start Game'
+    }
+    startButton.classList.toggle('started');
 }

@@ -1,5 +1,5 @@
 import { update as updateSnake, draw as drawSnake, getSnakeHead, getSnakeBody, snakeIntersection, SNAKE_SPEED } from './snake.js'
-import { update as updateFood, draw as drawFood, getScores, getHighScore} from './food.js'
+import { update as updateFood, draw as drawFood, getScores} from './food.js'
 import { update as updateEnemy, draw as drawEnemy, enemyKilledSnake, drawEnemyNextPath } from './enemy.js';
 import { outsideGrid, getGridSize } from './grid.js';
 
@@ -59,7 +59,7 @@ function checkDeath() {
     if(gameOver && enemyKilledSnake(getSnakeBody())) {
         console.log(`enemyKilledSnake: ${true}`);
     }
-    getHighScore();
+    // getHighScore();
 }
 
 export function pauseGame() {

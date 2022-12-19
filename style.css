@@ -43,14 +43,9 @@ body {
 .snake {
     width: 100%;
     height: 100%;
-    background: radial-gradient(hsl(var(--hue), 50%, 50%) 30%, hsl(var(--hue), 20%, 5%));
-    /* background-color: hsl(var(--hue), 50%, 35%); */
+    background: radial-gradient(hsl(var(--hue), 50%, 40%) 25%, hsl(var(--hue), 20%, 5%));
     border-radius: 30%;
-    /* border: 0.25vmin solid rgba(255, 255, 255, 0.5); */
-    /* outline: 10% solid rgba(var(--hue), 255, 0, 1); */
-    filter: drop-shadow(0 0 0.60vmin hsl(var(--hue), 80%, 0%));
-    /* text-align: center; */
-    /* align-self: center; */
+    filter: drop-shadow(0 0 0.20vmin hsl(var(--hue), 80%, 0%));
     font-weight: bolder;
     font-size: 1.25vmin;
     font-family: inherit;
@@ -61,10 +56,12 @@ body {
 }
 
 .head {
-    color: #222;
-    background: radial-gradient(hsl(var(--hue), 75%, 65%) 30%, hsl(var(--hue), 20%, 15%));
-    /* background-color: hsl(var(--hue), 60%, 40%); */
-    border-radius: 100% 100% 100% 100%;
+    background: radial-gradient(hsl(var(--hue), 75%, 75%) 25%, hsl(var(--hue), 20%, 15%));
+    border-radius: 100%;
+}
+
+.alternate {
+    background: radial-gradient(hsl(calc(var(--hue) + 20), 75%, 50%) 25%, hsl(calc(var(--hue) + 20), 20%, 15%));
 }
 
 .head-top {
@@ -86,10 +83,6 @@ body {
 .food {
     width: 100%;
     height: 100%;
-    /* background-color: burlywood; */
-    /* border-radius: 20%; */
-    /* outline: 0.25vmin solid rgba(200, 200, 100, 0.8); */
-    /* filter: drop-shadow(0 0 2px #555); */
     background-size: cover;
 }
 
@@ -139,9 +132,7 @@ body {
     font-size: 1vmin;
     font-weight: bold;
     background: radial-gradient(hsl(var(--hue), 60%, 40%) 35%, hsl(var(--hue), 50%, 0%));
-    /* background-color: hsl(0, 50%, 60%); */
     border-radius: 50%;
-    /* border: 0.25vmin solid rgba(255, 255, 255, 0.5); */
     
     position: relative;
     display: flex;
@@ -181,13 +172,10 @@ body {
     --hue: 0;
     width: 50%;
     height: 50%;
-    /* background-color: rgba(150, 50, 50, 0.25); */
     border-radius: 25%;
     align-self: center;
     margin: 25%;
     background: radial-gradient(rgba(220, 40, 40, 0.5) 0%, rgba(0, 0, 0, 0) 75%);
-    /* grid-column: span 5; */
-    /* grid-row: span 5; */
     filter: drop-shadow(0 0 10px hsl(var(--hue), 75%, 80%));
 }
 
@@ -200,16 +188,34 @@ body {
     font-size: 3vmin;
 }
 
+.high-score-container {
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    top: 20%;
+    bottom: 0;
+    right: 0%;
+    left: 0%;
+    text-align: center;
+    color:rgba(220, 220, 220, 0.075);
+    text-transform: uppercase;
+    font-size: 6vmin;
+    pointer-events: none;
+    user-select: none;
+}
+
 .high-score {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 80%;
     pointer-events: none;
     user-select: none;
     color:rgba(220, 220, 220, 0.025);
     font-size: 60vmin;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    margin-top: -5%;
+    text-align: center;
 }
 
 .level {
@@ -224,9 +230,9 @@ body {
     border: 0.5vmin solid hsl(var(--hue), 50%, 50%);
     background: hsl(var(--hue), 50%, 30%);
     color: hsl(var(--hue), 50%, 75%);
-    margin-top: 5vmin;
+    margin-top: 1vmin;
     font-family: 'Arial', sans-serif;
-    font-size: 5vmin;
+    font-size: 3vmin;
     font-style: bolder;
     padding: 1vmin 2vmin;
     border-radius: 1vmin;

@@ -1,5 +1,5 @@
 import { update as updateSnake, draw as drawSnake, getSnakeHead, getSnakeBody, snakeIntersection, SNAKE_SPEED } from './snake.js'
-import { update as updateFood, draw as drawFood, getScores} from './food.js'
+import { update as updateFood, draw as drawFood, getScores, setHighScore, drawHighScore} from './food.js'
 import { update as updateEnemy, draw as drawEnemy, enemyKilledSnake, drawEnemyNextPath } from './enemy.js';
 import { outsideGrid, getGridSize } from './grid.js';
 
@@ -12,20 +12,18 @@ const scoreBoard = document.getElementById('score');
 const levelBoard = document.getElementById('level');
 const startButton = document.getElementById('start-button');
 
-console.log(startButton);
-
 gameBoard.style.setProperty("--grid-size", getGridSize());
 
 function main(currentTime) {
     if (gameOver) {
-        if(confirm('You Taaha! Restart?')) return location.reload()
+        if(confirm('You Loser! Restart?')) return location.reload()
     }
 
     
     if (!gamePaused) {
         window.requestAnimationFrame(main);
         const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-        if (secondsSinceLastRender < 1 /(5*SNAKE_SPEED)) return
+        if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
     
     
         lastRenderTime = currentTime;
@@ -34,9 +32,6 @@ function main(currentTime) {
     }
 }
 
-startButton.addEventListener('click', (e) => {
-    startGame();
-});
 
 window.requestAnimationFrame(main);
 
@@ -50,13 +45,13 @@ function update() {
 function draw() {
     // Emptying gameBoard
     gameBoard.innerHTML = '';
-
+    
     // Setting Score with getScores()
     scoreBoard.innerText = getScores().score;
     levelBoard.innerText = `Level ${getScores().level}`;
-
+    
     // Drawing elements
-    // drawHighScore(gameBoard);
+    drawHighScore(gameBoard);
     drawEnemyNextPath(gameBoard);
     drawEnemy(gameBoard);
     drawFood(gameBoard);
@@ -65,24 +60,22 @@ function draw() {
 
 function checkDeath() {
     gameOver = outsideGrid(getSnakeHead()) || snakeIntersection() || enemyKilledSnake(getSnakeBody());
-    if(gameOver && enemyKilledSnake(getSnakeBody())) {
-        console.log(`enemyKilledSnake: ${true}`);
-    }
-    // getHighScore();
+    if (gameOver) setHighScore();
 }
 
 export function pauseGame() {
     if(!gamePaused) {
         gamePaused = true;
-        // console.log(`gamePaused: ${gamePaused}`)
+        startButton.innerText = 'Start Game'
     } else {
         gamePaused = false;
         window.requestAnimationFrame(main);
-        // console.log(`gamePaused: ${gamePaused}`)
+        startButton.innerText = 'Pause Game'
     }
+    startButton.classList.toggle('started');
 }
 
-function startGame() {
+export function startGame() {
     if(gamePaused) {
         gamePaused = false;
         window.requestAnimationFrame(main);
@@ -93,3 +86,7 @@ function startGame() {
     }
     startButton.classList.toggle('started');
 }
+
+startButton.addEventListener('click', (e) => {
+    startGame();
+});

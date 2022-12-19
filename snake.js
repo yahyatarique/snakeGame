@@ -2,8 +2,8 @@ import { getInputDirection } from "./input.js";
 import { getScores, getExpansionRate } from "./food.js";
 
 export let SNAKE_SPEED = 1;
-const MAX_SPEED = 5;
-const snakeBody = [{x: 11, y: 11}];
+const MAX_SPEED = 8;
+const snakeBody = [{x: 11, y: 11}, {x: 12, y: 11}];
 let newSegments = 0;
 
 export function update() {
@@ -21,13 +21,12 @@ export function draw(gameBoard) {
     const inputDirection = getInputDirection();
     snakeBody.forEach((segment, index) => {
         const snakeElement = document.createElement('div');
-        snakeElement.innerText = `${index + 1}`;
-        snakeElement.style.textAlign = "center";
         snakeElement.style.gridRowStart = segment.y;
         snakeElement.style.gridColumnStart = segment.x;
-        snakeElement.style.zIndex = `${-index + 20 }`;
+        snakeElement.style.zIndex = `${-index + snakeBody.length }`;
         snakeElement.classList.add('snake');
         if (index == 0) snakeElement.classList.add('head');
+        if (index % 2 == 0) snakeElement.classList.add('alternate');
         if (index == 0 && inputDirection.y < 0) snakeElement.classList.add('head-top');
         else if (index == 0 && inputDirection.y > 0) snakeElement.classList.add('head-down');
         else if (index == 0 && inputDirection.x > 0) snakeElement.classList.add('head-right');
@@ -70,9 +69,9 @@ function addSegments() {
 
 function getSnakeSpeed() {
     let level = getScores().level;
-    if(level > MAX_SPEED) return
-
-    SNAKE_SPEED = level;
+    console.log(SNAKE_SPEED);
+    if(SNAKE_SPEED >= MAX_SPEED) return
+    else SNAKE_SPEED = level + 2;
 }
 
 export function getSnakeBody() {

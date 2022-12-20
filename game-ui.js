@@ -39,7 +39,7 @@ export function getGameUI(gameOver) {
 function extractValuesFromForm() {
     userName = document.getElementById('name').value;
     userEmail = document.getElementById('email').value;
-    userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    if (document.querySelector('input[name="difficulty"]:checked')) userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
     
     if(!userName || userName.length == 0) {
         errorEl.style.display = 'block';

@@ -53,6 +53,7 @@ function extractValuesFromForm() {
     }
 
     saveUser(userName, userEmail, userDifficulty);
+    getUser();
 }
 
 function saveUser() {

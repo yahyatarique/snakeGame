@@ -468,3 +468,13 @@ body {
     text-align: end;
     font-size: 1em;
 }
+
+.game-over-text {
+    font-size: 4vmin;
+}
+
+.game-over-text + p {
+    font-size: 2vmin;
+    text-align: right;
+    margin-top: 1vmin;
+}

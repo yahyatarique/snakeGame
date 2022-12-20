@@ -118,7 +118,7 @@ window.addEventListener('load', (e) => {
     // Setting highScore on load
     if (localStorage.highScore) highScore = localStorage.getItem('highScore');
     else highScore = 0;
-    getGameUI(highScore, false);
+    getGameUI(false);
     getUser();
 })
 

@@ -16,7 +16,7 @@ gameBoard.style.setProperty("--grid-size", getGridSize());
 
 
 function main(currentTime) {
-    if (gameOver) {
+    if (gameOver || gamePaused) {
         setHighScore();
         getGameUI(gameOver);
     }

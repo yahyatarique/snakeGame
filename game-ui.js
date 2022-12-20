@@ -8,6 +8,8 @@ const currentScoreUI = document.getElementById('current-score-ui');
 const form = document.getElementById('form');
 const errorEl = document.getElementById('error');
 const playButton = document.getElementById('start-button');
+const welcomeElem = document.getElementById('welcome');
+
 
 let userName;
 let userEmail;
@@ -17,12 +19,19 @@ export function getGameUI(gameOver) {
     if (gameOver) {
         gameUI.style.setProperty('--redness', 55);
 
-        errorEl.innerText = `GAME OVER, ${getUser().userName}`;
+        errorEl.innerHTML = 
+        `<div class="game-over-text">
+            GAME OVER
+        </div>
+        <p>${userName} died.</p>`;
+        errorEl.style.display = 'block';
+        welcomeElem.style.display = 'none';
         playButton.innerText = 'Replay?';
+    } else {
+        gameUI.style.setProperty('--redness', 0);
     }
     highScoreUI.innerText = getScores().highScore;
     currentScoreUI.innerText = getScores().score;
-    console.log(getScores().score);
     gameUI.classList.add('active');
 
 }
@@ -76,7 +85,6 @@ export function getUser() {
         userDifficulty = localStorage.getItem('userDifficulty');
         document.querySelector('.difficulty-selector').style.display = 'none';
 
-        let welcomeElem = document.getElementById('welcome');
         welcomeElem.style.display = 'block';
         welcomeElem.innerHTML = 
         `<div className="hi">

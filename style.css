@@ -309,6 +309,7 @@ body {
     background-color: rgba(calc(var(--redness) + 100), 100, 100, 0.05);
     color: hsl(var(--hue), 50%, 60%);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 0.25vmin solid rgba(200, 200, 200, 0.1);
     border-radius: 3vmin;
     padding: 5vmin 2vmin;

@@ -11,6 +11,7 @@ let gamePaused = true;
 const gameBoard = document.getElementById('game-board');
 const scoreBoard = document.getElementById('score');
 const levelBoard = document.getElementById('level');
+const gameUI = document.getElementById('game-ui');
 
 gameBoard.style.setProperty("--grid-size", getGridSize());
 
@@ -71,14 +72,18 @@ export function restart() {
     resetSnake();
     gameOver = false;
     window.requestAnimationFrame(main);
-    console.log('restart')
+    gameUI.classList.remove('active');
 }
 
 export function startGame() {
-    console.log('start game()')
     if (gamePaused) {
         gamePaused = false;
         window.requestAnimationFrame(main);
+        gameUI.classList.remove('active');
     }
     if (gameOver) restart();
+}
+
+export function checkGameOver() {
+    return gameOver;
 }

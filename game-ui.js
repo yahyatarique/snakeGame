@@ -1,5 +1,5 @@
 import { getScores } from "./food.js";
-import { startGame, restart } from "./game.js";
+import { startGame, restart, checkGameOver } from "./game.js";
 
 // Defining elements to control the game;
 const gameUI = document.getElementById('game-ui');
@@ -69,6 +69,7 @@ function saveUser() {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!userName || !userEmail || !userDifficulty) extractValuesFromForm();
+    if (checkGameOver() || getUser()) startGame();
 })
 
 form.addEventListener('reset', (e) => {
@@ -96,9 +97,8 @@ export function getUser() {
         <span>${userName}</span><br>
         <div class="back">Welcome Back!<div>`;
     } else {
-        gameUI.classList.add('active');
         return false;
     }
 
-    return {userName, userEmail, userDifficulty}
+    return true;
 }

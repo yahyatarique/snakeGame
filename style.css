@@ -2,9 +2,36 @@
     box-sizing: border-box;
 }
 
+button {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     --hue: 100;
     --text-color: rgba(220, 220, 220, 0.8);
+    --ff: 'Press Start 2P', cursive;
     
     margin: 0;
     padding: 0;
@@ -15,6 +42,7 @@ body {
     height: 100vh;
     background-color: hsl(var(--hue), 50%, 20%);
     transition: background-color ease 1s;
+    font-family: var(--ff);
 }
 
 .flex {
@@ -27,7 +55,6 @@ body {
 
 .game-board {
     --grid-size: 21;
-    font-family: 'Roboto';
     width: 90vmin;
     height: 90vmin;
     background-color: #111;
@@ -43,12 +70,11 @@ body {
 .snake {
     width: 100%;
     height: 100%;
-    background: radial-gradient(hsl(var(--hue), 50%, 40%) 25%, hsl(var(--hue), 20%, 5%));
+    background: radial-gradient(hsl(var(--hue), 75%, 60%) 0%, hsl(var(--hue), 20%, 15%));
     border-radius: 30%;
-    filter: drop-shadow(0 0 0.20vmin hsl(var(--hue), 80%, 0%));
+    filter: drop-shadow(0 0 1vmin hsl(var(--hue), 100%, 2%));
     font-weight: bolder;
     font-size: 1.25vmin;
-    font-family: inherit;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -56,12 +82,13 @@ body {
 }
 
 .head {
-    background: radial-gradient(hsl(var(--hue), 75%, 75%) 25%, hsl(var(--hue), 20%, 15%));
+    background: radial-gradient(hsl(calc(var(--hue) + 1), 100%, 75%) 25%, hsl(var(--hue), 80%, 10%));
     border-radius: 100%;
 }
 
-.alternate {
-    background: radial-gradient(hsl(calc(var(--hue) + 20), 75%, 50%) 25%, hsl(calc(var(--hue) + 20), 20%, 15%));
+.tail {
+    background: radial-gradient(hsl(calc(var(--hue) + 10), 100%, 75%) 0%, hsl(var(--hue), 80%, 10%));
+    border-radius: 50%;
 }
 
 .head-top {
@@ -186,6 +213,7 @@ body {
     color: antiquewhite;
     right: -0.5vmin;
     font-size: 3vmin;
+    user-select: none;
 }
 
 .high-score-container {
@@ -211,9 +239,8 @@ body {
     pointer-events: none;
     user-select: none;
     color:rgba(220, 220, 220, 0.025);
-    font-size: 60vmin;
+    font-size: 40vmin;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
     margin-top: -5%;
     text-align: center;
 }
@@ -224,25 +251,220 @@ body {
     border: 0.25vmin dashed rgba(255, 255, 255, 0.5);
     color: antiquewhite;
     font-size: 3vmin;    
+    user-select: none;
+}
+
+
+
+/* Game UI */
+
+.buttons {
+    justify-content: center;
+    gap: 2vmin;
 }
 
 .start {
-    border: 0.5vmin solid hsl(var(--hue), 50%, 50%);
-    background: hsl(var(--hue), 50%, 30%);
-    color: hsl(var(--hue), 50%, 75%);
-    margin-top: 1vmin;
-    font-family: 'Arial', sans-serif;
-    font-size: 3vmin;
-    font-style: bolder;
-    padding: 1vmin 2vmin;
+    width: 12vmin;
+    height: 7vmin;
+    margin: 0.5vmin;
+    padding: 2vmin 0;
     border-radius: 1vmin;
     scale: 1;
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
     cursor: pointer;
+    background-color: hsl(var(--hue), 50%, 30%);
+    color: hsl(var(--hue), 80%, 90%);
 }
 
 .start.started {
     --hue: 0;
-    scale: 0.8;
+    scale: 0.75;
+}
+
+.start:hover, .start:focus {
+    background-color: hsl(var(--hue), 50%, 40%);
+}
+
+.reset {
+    --hue: 0;
+}
+
+.game-ui {
+    --redness: 0;
+
+    width: 60%;
+    height: max-content;
+    position: fixed;
+    top: 50%;
+    bottom: 0%;
+    right: 0%;
+    left: -100%;
+    transform: translate(-50%, -50%);
+    scale: 0.5;
+    flex-direction: column;
+    gap: 6vmin;
+    justify-content: center;
+    
+    background-color: rgba(calc(var(--redness) + 100), 100, 100, 0.05);
+    color: hsl(var(--hue), 50%, 60%);
+    backdrop-filter: blur(8px);
+    border: 0.25vmin solid rgba(200, 200, 200, 0.1);
+    border-radius: 3vmin;
+    padding: 5vmin 2vmin;
+    z-index: 50;
+    box-shadow: 2px 2px 20px 5px rgba(10, 10, 10, 0.8);
+    transition: all 0.6s cubic-bezier(0, 1.125, 0.8, 1.125);
+    font-size: 1.5vmin;
+}
+
+.game-ui.active {
+    position: fixed;
+    scale: 1;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+}
+
+.name-input {
+    flex-grow: 1;
+    justify-content: center;
+    gap: 4vmin;
+}
+
+.email-input {
+    flex-grow: 1;
+    justify-content: center;
+    gap: 4vmin;
+}
+
+.email-input #email {
+    color: hsl(var(--hue), 50%, 80%);
+}
+
+.name-input #name {
+    color: hsl(var(--hue), 50%, 80%)
+}
+
+.difficulty-selector {
+    justify-content: center;
+    gap: 1vmin;
+    text-transform: uppercase;
+    font-weight: 800;
+    flex-direction: column;
+}
+
+.difficulty-selector > div {
+    justify-content: center;
+    gap: 1vmin;
+}
+
+.difficulty {
+    color: hsl(var(--hue), 75%, 75%);
+    width: 18vmin;
+    height: 6vmin;
+    background-color: hsl(var(--hue), 40%, 30%);
+    padding: 2vmin;
+    border-radius: 1vmin;
+    /* opacity: 0.5; */
+    
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+.difficulty:hover, .difficulty:focus {
+    background-color: hsl(var(--hue), 50%, 40%);
+}
+
+
+.easy {
+    --hue: 200;
+}
+
+.medium {
+    --hue: 100;
+}
+
+.hard {
+    --hue: 0;
+}
+
+.game-ui input {
+    /* flex-shrink: 1; */
+    border: none;
+    background: none;
+    border-bottom: 1px solid hsl(var(--hue), 60%, 50%);
+    border-radius: 0.25vmin;
+    transition: border-bottom 0.25s ease-in-out;
+}
+
+.game-ui input:focus-within {
+    border-bottom: 1px solid hsl(var(--hue), 40%, 80%);
+}
+
+.title-cont {
+    margin-bottom: 8vmin;
+    user-select: none;
+}
+
+.title {
+    color: hsla(var(--hue), 90%, 80%, 1);
+}
+
+.subtitle {
+    color: hsla(var(--hue), 80%, 100%, 0.6);
+    font-size: 1vmin;
+    margin-right: -15%;
+    text-align: end;
+}
+
+.highscore-ui {
+    font-size: 7.5vmin;
+    justify-content: center;
+    gap: 6%;
+    user-select: none;
+}
+
+.score-ui {
+    width: 24%;
+    text-align: center;
+}
+
+.score-title {
+    font-size: 1.5vmin;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1vmin;
+}
+
+.error {
+    --hue: 0;
+    color: hsl(var(--hue), 50%, 50%);
+    text-transform: uppercase;
+    display: none;
+}
+
+.welcome {
+    --hue: 100;
+    color: hsl(var(--hue), 50%, 50%);
+    text-transform: uppercase;
+    display: none;
+    line-height: 1.5em;
+}
+
+.welcome span {
+    margin: 2vmin 0vmin;
+    /* padding: 1vmin 2vmin; */
+    font-size: 2.5vmin;
+    color: hsl(var(--hue), 50%, 80%);
+}
+
+.welcome > .back {
+    margin-top: 1vmin;
+    text-align: end;
+    font-size: 1em;
 }

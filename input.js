@@ -15,36 +15,33 @@ window.addEventListener('keydown', (e) => {
         case 'ArrowUp':
         case 'W':
         case 'w':
-            e.preventDefault();
             if ( lastInputDirection.y !== 0) break
             inputDirection = { x: 0, y: -1 }
             break
         case 'ArrowDown':
         case 'S':
         case 's':
-            e.preventDefault();
             if ( lastInputDirection.y !== 0) break
             inputDirection = { x: 0, y: 1 }
             break
         case 'ArrowLeft':
         case 'A':
         case 'a':
-            e.preventDefault();
             if ( lastInputDirection.x !== 0) break
             inputDirection = { x: -1, y: 0 }
             break
         case 'ArrowRight':
         case 'D':
         case 'd':
-            e.preventDefault();
             if ( lastInputDirection.x !== 0) break
             inputDirection = { x: 1, y: 0 }
             break
         
-        // Pause/Play           
-        case ' ':
-            startGame();
-            break
+        // Pause/Play
+
+        // case ' ':
+        //     startGame();
+        //     break
 
     }
  })
@@ -81,6 +78,14 @@ function handleSwipeEvents(swipeStart, swipeEnd) {
             inputDirection = { x: 0, y: 1 }
         }
     }
+}
+
+export function reset() {
+    inputDirection = { x: 1, y: 0 };
+    lastInputDirection = { x: 0, y: 0 }
+
+    swipeStart = { x: null, y: null}
+    swipeEnd = { x: null, y: null}
 }
 
 gameBoard.addEventListener('touchstart', (e) => {

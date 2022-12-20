@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="/game.js" type="module" defer></script>
     <title>Snake Game</title>
 </head>
-<body>
+<body id="body">
     <div class="flex">
         <div class="level" id="level">Level 1</div>
         <div class="score" id="score">0</div>
@@ -19,6 +22,54 @@
         <!-- <div class="food"></div> -->
         <!-- <div class="enemy"></div> -->
     </div>
-    <button id="start-button" class="start">Start Game</button>
+    <form id="form">
+        <div id="game-ui" class="game-ui flex">
+            <div class="title-cont">
+                <h1 class="title">Snake Game</h1>
+                <p class="subtitle">~ by Yahya Tarique</p>
+            </div>
+            <div class="error" id="error"></div>
+            <div class="welcome" id="welcome"></div>
+            <div class="name-input flex">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Your Name" name="userName">
+            </div>
+            <div class="email-input flex">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="userEmail" placeholder="youremail@example.com">
+            </div>
+            <div class="difficulty-selector flex">
+                <label>Difficulty Level:</label>
+                <div class="flex">                
+                    <div class="easy difficulty">
+                        <label for="easy">Easy</label>
+                        <input type="radio" name="difficulty" id="easy" value="easy">
+                    </div>
+                    <div class="medium difficulty">
+                        <label for="medium">Medium</label>
+                        <input type="radio" name="difficulty" id="medium" value="medium">
+                    </div>
+                    <div class="hard difficulty">
+                        <label for="hard">Hard</label>
+                        <input type="radio" name="difficulty" id="hard" value="hard">
+                    </div>
+                </div>
+            </div>
+            <div class="highscore-ui flex">
+                <div class="highscore-ui-cont">
+                    <p class="score-title">Highscore</p>
+                    <p class="highscore score-ui" id="highscore-ui"></p>
+                </div>
+                <div class="current-score-ui-cont">
+                    <p class="score-title">Score</p>
+                    <p class="current-score score-ui" id="current-score-ui"></p>
+                </div>
+            </div>
+            <div class="buttons flex">
+                <button id="start-button" class="start" type="submit">Start Game</button>
+                <button id="reset-button" class="start reset" type="reset">Reset</button>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

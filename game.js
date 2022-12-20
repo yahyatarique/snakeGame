@@ -1,7 +1,8 @@
-import { update as updateSnake, draw as drawSnake, getSnakeHead, getSnakeBody, snakeIntersection, SNAKE_SPEED } from './snake.js'
-import { update as updateFood, draw as drawFood, getScores, setHighScore, drawHighScore} from './food.js'
-import { update as updateEnemy, draw as drawEnemy, enemyKilledSnake, drawEnemyNextPath } from './enemy.js';
+import { update as updateSnake, draw as drawSnake, getSnakeHead, getSnakeBody, snakeIntersection, SNAKE_SPEED, reset as resetSnake } from './snake.js'
+import { update as updateFood, draw as drawFood, getScores, setHighScore, drawHighScore, reset as resetFood} from './food.js'
+import { update as updateEnemy, draw as drawEnemy, enemyKilledSnake, drawEnemyNextPath, reset as resetEnemy } from './enemy.js';
 import { outsideGrid, getGridSize } from './grid.js';
+import { getGameUI } from './game-ui.js';
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -10,17 +11,18 @@ let gamePaused = true;
 const gameBoard = document.getElementById('game-board');
 const scoreBoard = document.getElementById('score');
 const levelBoard = document.getElementById('level');
-const startButton = document.getElementById('start-button');
 
 gameBoard.style.setProperty("--grid-size", getGridSize());
 
+
 function main(currentTime) {
     if (gameOver) {
-        if(confirm('You Loser! Restart?')) return location.reload()
+        setHighScore();
+        getGameUI(gameOver);
     }
 
     
-    if (!gamePaused) {
+    if (!gamePaused && !gameOver) {
         window.requestAnimationFrame(main);
         const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
         if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
@@ -63,30 +65,20 @@ function checkDeath() {
     if (gameOver) setHighScore();
 }
 
-export function pauseGame() {
-    if(!gamePaused) {
-        gamePaused = true;
-        startButton.innerText = 'Start Game'
-    } else {
-        gamePaused = false;
-        window.requestAnimationFrame(main);
-        startButton.innerText = 'Pause Game'
-    }
-    startButton.classList.toggle('started');
+export function restart() {
+    resetFood();
+    resetEnemy();
+    resetSnake();
+    gameOver = false;
+    window.requestAnimationFrame(main);
+    console.log('restart')
 }
 
 export function startGame() {
-    if(gamePaused) {
+    console.log('start game()')
+    if (gamePaused) {
         gamePaused = false;
         window.requestAnimationFrame(main);
-        startButton.innerText = 'Pause Game'
-    } else {
-        gamePaused = true;
-        startButton.innerText = 'Start Game'
     }
-    startButton.classList.toggle('started');
+    if (gameOver) restart();
 }
-
-startButton.addEventListener('click', (e) => {
-    startGame();
-});

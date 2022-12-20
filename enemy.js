@@ -169,3 +169,9 @@ export function drawEnemyNextPath(gameBoard) {
         }
     })
 }
+
+export function reset() {
+    enemies = [];
+    directionVectors = [];
+    enemySteps = [];    
+}

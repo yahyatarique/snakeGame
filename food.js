@@ -1,5 +1,6 @@
 import { onSnake, expandSnake } from './snake.js';
 import { randomGridPos, hueChange } from './grid.js';
+import { getGameUI, getUser } from './game-ui.js';
 
 // Intializing food Element with a fixed x and y and random image
 let food = { x: 15, y: 5, imgCode: Math.ceil(Math.random() * 12)};
@@ -55,8 +56,11 @@ export function getScores() {
     // Calling hueChange to change bkg color and some element styles based on the level.
     hueChange(Math.abs(100 - (level - 1) * 20));
 
-    // Returns an object with score and level.
-    return {score, level};
+    // Returns an object with score, level, and highScore.
+    if (!highScore) {
+        return {score, level, highScore: 0}
+    } else return {score, level, highScore}
+
 }
 
 function getRandomFoodPosAndImage() {
@@ -82,7 +86,7 @@ export function getExpansionRate() {
 
 export function setHighScore() {
     // Function to store highScore to localStorage, after gameOver
-    if (highScore < score) {
+    if (highScore <= score) {
         highScore = score;
         localStorage.setItem('highScore', highScore);
     }
@@ -114,4 +118,11 @@ window.addEventListener('load', (e) => {
     // Setting highScore on load
     if (localStorage.highScore) highScore = localStorage.getItem('highScore');
     else highScore = 0;
+    getGameUI(highScore, false);
+    getUser();
 })
+
+export function reset() {
+    food = { x: 15, y: 5, imgCode: Math.ceil(Math.random() * 12)};
+    score = 0;
+}

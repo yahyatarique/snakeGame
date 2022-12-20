@@ -39,21 +39,24 @@ export function getGameUI(gameOver) {
 function extractValuesFromForm() {
     userName = document.getElementById('name').value;
     userEmail = document.getElementById('email').value;
-    userDifficulty = document.querySelectorAll('input[name="difficulty"]:checked').value;
+    userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
     
-    if(!userName) {
+    if(!userName || userName.length == 0) {
+        errorEl.style.display = 'block';
         errorEl.innerText = 'Please enter a name!';
     } else if (!userEmail) {
+        errorEl.style.display = 'block';
         errorEl.innerText = 'Email cannot be empty!';
     } else if (!userDifficulty || userDifficulty == undefined) {
+        errorEl.style.display = 'block';
         errorEl.innerText = 'Choose a difficulty level!';
     } else {
         startGame();
+        saveUser(userName, userEmail, userDifficulty);
+        getUser();
         gameUI.classList.remove('active');
     }
 
-    saveUser(userName, userEmail, userDifficulty);
-    getUser();
 }
 
 function saveUser() {
@@ -66,8 +69,6 @@ function saveUser() {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!userName || !userEmail || !userDifficulty) extractValuesFromForm();
-    startGame();
-    gameUI.classList.toggle('active');
 })
 
 form.addEventListener('reset', (e) => {

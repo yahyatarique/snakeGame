@@ -356,6 +356,26 @@ body {
     flex-direction: column;
 }
 
+.difficulty-selector label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-button {
+    margin-top: 2vmin;
+    padding: 1vmin 2vmin;
+    background-color: hsl(var(--hue), 50%, 30%);
+    color: hsl(var(--hue), 80%, 90%);
+    border-radius: 1vmin;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.edit-button:hover, .edit-button:focus {
+    background-color: hsl(var(--hue), 50%, 50%);
+}
+
 .difficulty-selector > div {
     justify-content: center;
     gap: 1vmin;

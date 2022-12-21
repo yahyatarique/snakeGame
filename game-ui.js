@@ -26,7 +26,7 @@ export function getGameUI(gameOver) {
         <p>${userName} died.</p>`;
         errorEl.style.display = 'block';
         welcomeElem.style.display = 'none';
-        playButton.innerText = 'Replay';
+        playButton.innerText = 'Restart';
     } else {
         gameUI.style.setProperty('--redness', 0);
     }
@@ -86,7 +86,7 @@ export function getUser() {
         document.querySelector('.email-input').style.display = 'none';
 
         userDifficulty = localStorage.getItem('userDifficulty');
-        document.querySelector('.difficulty-selector').style.display = 'none';
+        hideDifficultyOptionsAndShowSelected();
 
         showWelcomeBackElem();
     } else {
@@ -112,4 +112,43 @@ function showWelcomeBackElem() {
     welcomeElem.appendChild(welcomeBackUserName);
     welcomeElem.appendChild(welcomeBackText);
     welcomeElem.style.display = 'block';
+}
+
+let editDifficultyButton = document.createElement('button');
+
+function showSelectedDifficulty() {
+    document.querySelector('.difficulty-selector label').innerText = `Difficulty: ${userDifficulty}`;
+    editDifficultyButton.setAttribute('type', 'button');
+    editDifficultyButton.classList.add('edit-button');
+    editDifficultyButton.innerText = `Edit`;
+    document.querySelector('.difficulty-selector label').appendChild(editDifficultyButton);
+}
+
+editDifficultyButton.addEventListener('click', () => {
+    if (editDifficultyButton.innerText === 'Edit') {
+        console.log('Me edit wala function hu')
+        handleEditDifficultyButton();
+        editDifficultyButton.innerText = 'Save';
+    } else {
+        console.log('Me else hu')
+        if (document.querySelector('input[name="difficulty"]:checked')) userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+        hideDifficultyOptionsAndShowSelected();
+    }
+});
+
+function hideDifficultyOptionsAndShowSelected() {
+    document.querySelectorAll('.difficulty').forEach((diffEl) => {
+        diffEl.style.display = 'none';
+    })
+    showSelectedDifficulty();
+}
+
+function handleEditDifficultyButton() {
+    document.querySelectorAll('.difficulty').forEach((diffEl) => {
+        diffEl.style.display = 'flex';
+    }) 
+}
+
+export function getDifficulty() {
+    return userDifficulty;
 }

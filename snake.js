@@ -1,5 +1,8 @@
 import { getInputDirection, reset as resetInput } from "./input.js";
 import { getScores, getExpansionRate } from "./food.js";
+import { getDifficulty } from "./game-ui.js";
+import { getGridSize, outsideGrid } from "./grid.js";
+import { checkGameOver } from "./game.js";
 
 export let SNAKE_SPEED = 1;
 const MAX_SPEED = 8;
@@ -15,6 +18,14 @@ export function update() {
     getSnakeSpeed();
     snakeBody[0].x += inputDirection.x;
     snakeBody[0].y += inputDirection.y;
+
+    let userDifficulty = getDifficulty();
+    if (userDifficulty !== 'hard' && outsideGrid(snakeBody[0]) && !checkGameOver()) {
+        if ( snakeBody[0].x > getGridSize() ) snakeBody[0].x = 1;
+        else if ( snakeBody[0].x < 1 ) snakeBody[0].x = getGridSize();
+        else if ( snakeBody[0].y > getGridSize() ) snakeBody[0].y = 1;
+        else if ( snakeBody[0].y < 1 ) snakeBody[0].y = getGridSize();
+    }
 } 
 
 export function draw(gameBoard) {

@@ -2,7 +2,7 @@ import { update as updateSnake, draw as drawSnake, getSnakeHead, getSnakeBody, s
 import { update as updateFood, draw as drawFood, getScores, setHighScore, drawHighScore, reset as resetFood} from './food.js'
 import { update as updateEnemy, draw as drawEnemy, enemyKilledSnake, drawEnemyNextPath, reset as resetEnemy } from './enemy.js';
 import { outsideGrid, getGridSize } from './grid.js';
-import { getGameUI } from './game-ui.js';
+import { getGameUI, getDifficulty } from './game-ui.js';
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -62,7 +62,14 @@ function draw() {
 }
 
 function checkDeath() {
-    gameOver = outsideGrid(getSnakeHead()) || snakeIntersection() || enemyKilledSnake(getSnakeBody());
+    let userDifficulty = getDifficulty();
+    if (userDifficulty == 'hard') {
+        console.log('Hard')
+        gameOver = outsideGrid(getSnakeHead()) || snakeIntersection() || enemyKilledSnake(getSnakeBody());
+    } else {
+        console.log('Easy/Medium')
+        gameOver = snakeIntersection() || enemyKilledSnake(getSnakeBody());
+    }
     if (gameOver) setHighScore();
 }
 

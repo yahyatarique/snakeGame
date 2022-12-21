@@ -1,8 +1,9 @@
 import { equalPositions } from './snake.js';
 import { getGridSize } from './grid.js';
+import { getDifficulty } from './game-ui.js';
 
 // Array, because different difficulty level will have different number of enemies
-const maxNumberOfEnemies = [2, 4, 6];
+const maxNumberOfEnemies = [1, 3, 4];
 
 // Defining how many steps to take before newRandomDirection
 const STEPS_BEFORE_NEW_DIRECTION = 5;
@@ -38,7 +39,15 @@ function createEnemies(numberOfEnemies) {
 }
 
 // TEMP: Calling fn. to create Enemies
-createEnemies(maxNumberOfEnemies[0]);
+let userDifficulty = getDifficulty();
+if (userDifficulty == 'hard') {
+    createEnemies(maxNumberOfEnemies[2]);
+} else if (userDifficulty == 'medium') {
+    createEnemies(maxNumberOfEnemies[1]);
+} else {
+    createEnemies(maxNumberOfEnemies[0]);
+}
+
 
 export function update() {
     // Function to update Enemy position and direction, if neeeded.
@@ -175,4 +184,11 @@ export function reset() {
     directionVectors = [];
     enemySteps = [];
     createEnemies(maxNumberOfEnemies[0]);
+    if (userDifficulty == 'hard') {
+        createEnemies(maxNumberOfEnemies[2]);
+    } else if (userDifficulty == 'medium') {
+        createEnemies(maxNumberOfEnemies[1]);
+    } else {
+        createEnemies(maxNumberOfEnemies[0]);
+    }    
 }

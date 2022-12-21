@@ -1,5 +1,3 @@
-import { startGame } from './game.js';
-
 const gameBoard = document.getElementById('game-board');
 
 // Intializing inputDirection with 'Right' direction
@@ -36,13 +34,6 @@ window.addEventListener('keydown', (e) => {
             if ( lastInputDirection.x !== 0) break
             inputDirection = { x: 1, y: 0 }
             break
-        
-        // Pause/Play
-
-        // case ' ':
-        //     startGame();
-        //     break
-
     }
  })
 

@@ -1,5 +1,5 @@
 import { getScores } from "./food.js";
-import { startGame, restart, checkGameOver } from "./game.js";
+import { startGame, checkGameOver, setGamePaused } from "./game.js";
 
 // Defining elements to control the game;
 const gameUI = document.getElementById('game-ui');
@@ -33,7 +33,7 @@ export function getGameUI(gameOver) {
     highScoreUI.innerText = getScores().highScore;
     currentScoreUI.innerText = getScores().score;
     gameUI.classList.add('active');
-
+    setGamePaused(true);
 }
 
 function extractValuesFromForm() {
@@ -54,6 +54,7 @@ function extractValuesFromForm() {
         startGame();
         saveUser(userName, userEmail, userDifficulty);
         getUser();
+        setGamePaused(false);
         gameUI.classList.remove('active');
     }
 
@@ -126,13 +127,12 @@ function showSelectedDifficulty() {
 
 editDifficultyButton.addEventListener('click', () => {
     if (editDifficultyButton.innerText === 'Edit') {
-        console.log('Me edit wala function hu')
         handleEditDifficultyButton();
         editDifficultyButton.innerText = 'Save';
     } else {
-        console.log('Me else hu')
         if (document.querySelector('input[name="difficulty"]:checked')) userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
         hideDifficultyOptionsAndShowSelected();
+        saveUser();
     }
 });
 
@@ -150,5 +150,5 @@ function handleEditDifficultyButton() {
 }
 
 export function getDifficulty() {
-    return userDifficulty;
+    return localStorage.getItem('userDifficulty');
 }

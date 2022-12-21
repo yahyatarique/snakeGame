@@ -64,10 +64,8 @@ function draw() {
 function checkDeath() {
     let userDifficulty = getDifficulty();
     if (userDifficulty == 'hard') {
-        console.log('Hard')
         gameOver = outsideGrid(getSnakeHead()) || snakeIntersection() || enemyKilledSnake(getSnakeBody());
     } else {
-        console.log('Easy/Medium')
         gameOver = snakeIntersection() || enemyKilledSnake(getSnakeBody());
     }
     if (gameOver) setHighScore();
@@ -78,19 +76,25 @@ export function restart() {
     resetEnemy();
     resetSnake();
     gameOver = false;
+    gamePaused = false;
     window.requestAnimationFrame(main);
     gameUI.classList.remove('active');
 }
 
 export function startGame() {
-    if (gamePaused) {
+    if (gameOver) restart();
+    else {
         gamePaused = false;
+        resetEnemy();
         window.requestAnimationFrame(main);
         gameUI.classList.remove('active');
     }
-    if (gameOver) restart();
 }
 
 export function checkGameOver() {
     return gameOver;
+}
+
+export function setGamePaused(bool) {
+    gamePaused = bool;
 }

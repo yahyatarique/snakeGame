@@ -42,7 +42,6 @@ export function draw(gameBoard) {
         else if (index == 0 && inputDirection.y > 0) snakeElement.classList.add('head-down');
         else if (index == 0 && inputDirection.x > 0) snakeElement.classList.add('head-right');
         else if (index == 0 && inputDirection.x < 0) snakeElement.classList.add('head-left');
-        // else snakeElement.classList.add('head');
         gameBoard.appendChild(snakeElement);        
     })
 }
@@ -80,7 +79,6 @@ function addSegments() {
 
 function getSnakeSpeed() {
     let level = getScores().level;
-    console.log(SNAKE_SPEED);
     if(SNAKE_SPEED >= MAX_SPEED) return
     else SNAKE_SPEED = level + 2;
 }

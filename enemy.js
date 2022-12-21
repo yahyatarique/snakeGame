@@ -3,15 +3,15 @@ import { getGridSize } from './grid.js';
 import { getDifficulty } from './game-ui.js';
 
 // Array, because different difficulty level will have different number of enemies
-const maxNumberOfEnemies = [1, 3, 4];
+const maxNumberOfEnemies = [2, 3, 4];
 
 // Defining how many steps to take before newRandomDirection
 const STEPS_BEFORE_NEW_DIRECTION = 5;
 
 // Intializing empty arrays for enemies
-let enemies = [];
-let directionVectors = [];
-let enemySteps = [];
+let enemies;
+let directionVectors;
+let enemySteps;
 
 function createEnemies(numberOfEnemies) {
     // Function to create Enemies based on the number of Enemies provided, changes according the difficulty level
@@ -37,17 +37,6 @@ function createEnemies(numberOfEnemies) {
         enemySteps.push(Math.floor(Math.random() * STEPS_BEFORE_NEW_DIRECTION));
     }
 }
-
-// TEMP: Calling fn. to create Enemies
-let userDifficulty = getDifficulty();
-if (userDifficulty == 'hard') {
-    createEnemies(maxNumberOfEnemies[2]);
-} else if (userDifficulty == 'medium') {
-    createEnemies(maxNumberOfEnemies[1]);
-} else {
-    createEnemies(maxNumberOfEnemies[0]);
-}
-
 
 export function update() {
     // Function to update Enemy position and direction, if neeeded.
@@ -183,12 +172,16 @@ export function reset() {
     enemies = [];
     directionVectors = [];
     enemySteps = [];
-    createEnemies(maxNumberOfEnemies[0]);
-    if (userDifficulty == 'hard') {
-        createEnemies(maxNumberOfEnemies[2]);
-    } else if (userDifficulty == 'medium') {
-        createEnemies(maxNumberOfEnemies[1]);
-    } else {
-        createEnemies(maxNumberOfEnemies[0]);
-    }    
+    let userDifficulty = getDifficulty();
+    switch (userDifficulty) {
+        case 'hard':
+            createEnemies(maxNumberOfEnemies[2]);
+            break;
+        case 'medium':
+            createEnemies(maxNumberOfEnemies[1]);
+            break;
+        case 'easy':
+            createEnemies(maxNumberOfEnemies[0]);
+            break;
+    }
 }

@@ -88,17 +88,28 @@ export function getUser() {
         userDifficulty = localStorage.getItem('userDifficulty');
         document.querySelector('.difficulty-selector').style.display = 'none';
 
-        welcomeElem.style.display = 'block';
-        welcomeElem.innerHTML = 
-        `<div className="hi">
-        Hi!
-        </div>
-        <br>
-        <span>${userName}</span><br>
-        <div class="back">Welcome Back!<div>`;
+        showWelcomeBackElem();
     } else {
         return false;
     }
 
     return true;
+}
+
+function showWelcomeBackElem() {
+    let welcomeBackUserName = document.createElement('span');
+    welcomeBackUserName.innerText = userName;
+
+    let welcomeBackText = document.createElement('div');
+    welcomeBackText.classList.add('back');
+    welcomeBackText.innerText = 'Welcome Back!';
+
+    let hiText = document.createElement('div');
+    hiText.classList.add('hi');
+    hiText.innerText = 'Hi!';
+
+    welcomeElem.appendChild(hiText);
+    welcomeElem.appendChild(welcomeBackUserName);
+    welcomeElem.appendChild(welcomeBackText);
+    welcomeElem.style.display = 'block';
 }

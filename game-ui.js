@@ -26,7 +26,7 @@ export function getGameUI(gameOver) {
         <p>${userName} died.</p>`;
         errorEl.style.display = 'block';
         welcomeElem.style.display = 'none';
-        playButton.innerText = 'Replay?';
+        playButton.innerText = 'Replay';
     } else {
         gameUI.style.setProperty('--redness', 0);
     }

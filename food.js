@@ -102,7 +102,7 @@ export function drawHighScore(gameBoard) {
 
     // Creating actual highScoreElement
     const highScoreElem = document.createElement('div');
-    highScoreElem.innerText = highScore;
+    highScoreElem.innerText = (highScore > score) ? highScore : score;
 
     // Adding class for styling
     highScoreElem.classList.add('high-score','flex');

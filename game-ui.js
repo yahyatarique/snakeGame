@@ -122,7 +122,7 @@ function showSelectedDifficulty() {
     editDifficultyButton.setAttribute('type', 'button');
     editDifficultyButton.classList.add('edit-button');
     editDifficultyButton.innerText = `Edit`;
-    document.querySelector('.difficulty-selector label').appendChild(editDifficultyButton);
+    document.querySelector('.difficulty-selector').appendChild(editDifficultyButton);
 }
 
 editDifficultyButton.addEventListener('click', () => {

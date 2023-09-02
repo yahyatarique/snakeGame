@@ -55,7 +55,7 @@ function draw() {
     
     // Drawing elements
     drawHighScore(gameBoard);
-    drawEnemyNextPath(gameBoard);
+    // drawEnemyNextPath(gameBoard);    // For debugging
     drawEnemy(gameBoard);
     drawFood(gameBoard);
     drawSnake(gameBoard);

@@ -6,7 +6,7 @@ import { getDifficulty } from './game-ui.js';
 const maxNumberOfEnemies = [2, 3, 4];
 
 // Defining how many steps to take before newRandomDirection
-const STEPS_BEFORE_NEW_DIRECTION = 5;
+const STEPS_BEFORE_NEW_DIRECTION = 5;  
 
 // Intializing empty arrays for enemies
 let enemies;

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="/game.js" type="module" defer></script>
-    <title>Snake Game</title>
+    <title>Snake Game ~ by Yahya Tarique</title>
 </head>
 <body id="body">
     <div class="flex">
@@ -22,21 +22,22 @@
     </div>
     <div class="game-board" id="game-board"></div>
     <form id="form" name="contact" method="POST" netlify>
-
         <div id="game-ui" class="game-ui flex">
             <div class="title-cont">
                 <h1 class="title">Snake Game</h1>
                 <p class="subtitle">~ by Yahya Tarique</p>
             </div>
-            <div class="error" id="error"></div>
             <div class="welcome" id="welcome"></div>
-            <div class="name-input flex">
-                <label for="name">Name:</label>
-                <input type="text" id="name" placeholder="Your Name" name="userName">
-            </div>
-            <div class="email-input flex">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="userEmail" placeholder="youremail@example.com">
+            <div class="field-grid">
+                <div class="error" id="error"></div>
+                <div class="name-input field">
+                    <label for="name">Enter Name</label>
+                    <input type="text" id="name" placeholder="Your Name" name="userName">
+                </div>
+                <div class="email-input field">
+                    <label for="email">Enter Email</label>
+                    <input type="email" id="email" name="userEmail" placeholder="youremail@example.com">
+                </div>
             </div>
             <div class="difficulty-selector flex">
                 <label>Difficulty Level:</label>

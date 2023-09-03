@@ -32,7 +32,7 @@ body {
     --hue: 0;
     --text-color: rgba(220, 220, 220, 0.8);
     --ff: 'Press Start 2P', cursive;
-    --glassmorphism_blur: 10px;
+    --glassmorphism_blur: 24px;
     
     margin: 0;
     padding: 0;
@@ -66,6 +66,7 @@ body {
     position: relative;
     color: whitesmoke;
     overflow: hidden;
+    box-shadow: 0.75vmin 0.75vmin 0 0 rgba(0, 0, 0, 0.5);
 }
 
 .snake {
@@ -214,6 +215,7 @@ body {
     right: -0.5vmin;
     font-size: 3vmin;
     user-select: none;
+    box-shadow: 0.75vmin 0.75vmin 0 0 rgba(0, 0, 0, 0.5);
 }
 
 .high-score-container {
@@ -252,6 +254,7 @@ body {
     color: antiquewhite;
     font-size: 3vmin;    
     user-select: none;
+    box-shadow: 0.75vmin 0.75vmin 0 0 rgba(0, 0, 0, 0.5);
 }
 
 
@@ -274,7 +277,7 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     background-color: hsla(var(--hue), 50%, 30%, 0.1);
-    border: 1px dashed hsl(var(--hue), 50%, 30%);
+    /* border: 1px dashed hsl(var(--hue), 50%, 30%); */
     color: hsl(var(--hue), 80%, 90%);
     line-height: 1.5em;
 }
@@ -313,10 +316,11 @@ body {
     backdrop-filter: blur(var(--glassmorphism_blur));
     -webkit-backdrop-filter: blur(var(--glassmorphism_blur));
     border: 0.25vmin dashed rgba(calc(var(--redness) + 100), 100, 100, 1);
+    /* outline: 0.25vmin dashed rgba(calc(var(--redness) + 50), 50, 50, 0.75), 0.25vmin dashed rgba(calc(var(--redness) + 75), 75, 75, 0.75); */
     border-radius: 0;
     padding: 5vmin 2vmin;
     z-index: 50;
-    box-shadow: 2px 2px 20px 5px rgba(10, 10, 10, 0.8);
+    box-shadow: 0.5vmin 0.5vmin 0 0 rgba(0, 0, 0, 0.75);
     transition: all 0.6s cubic-bezier(0, 1.125, 0.8, 1.125);
     font-size: 1.5vmin;
 }
@@ -338,27 +342,71 @@ body {
 .name-input {
     flex-grow: 1;
     justify-content: center;
-    gap: 4vmin;
+    gap: 2vmin;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2vmin;
+    padding: 2vmin;
+    background-color: hsla(var(--hue), 50%, 25%, 0.2);
+    width: 80%;
+    transition: all 0.25s ease-in-out;
+}
+
+.field-grid:focus-within {
+    box-shadow: 0.5vmin 0.5vmin 0 0 hsla(var(--hue), 25%, 10%, 0.8);
+}
+
+.field {
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    place-items: center;
+}
+
+.field label {
+    font-weight: normal;
+    margin-right: 1ch;
+    justify-self: self-end;
+    color: hsl(var(--hue), 40%, 50%);
+    font-size: 1vmin;
+}
+
+.field input {
+    background: hsla(var(--hue), 40%, 20%, 0.5);
+    border: 1px solid transparent;     
+    font-size: 1.75vmin;
+    width: 20ch;
+    /* text-align: end; */
+    color: hsl(var(--hue), 50%, 80%);
+    padding: 1vmin 0.5vmin;
+    width: 100%;
+    transition: all 0.25s ease-in-out;
+}
+
+.field input:focus {
+    background-color: hsla(var(--hue), 50%, 25%, 0.5);
+    border: 1px dashed hsl(var(--hue), 50%, 25%);
+    box-shadow: 4px 4px 0 0 hsl(var(--hue), 20%, 10%);
 }
 
 .email-input {
     flex-grow: 1;
     justify-content: center;
-    gap: 4vmin;
+    gap: 2vmin;
 }
 
 .email-input #email {
     color: hsl(var(--hue), 50%, 80%);
     padding-block: 1vmin;
     font-size: 1vmin;
-    width: 40%;
 }
 
 .name-input #name {
     color: hsl(var(--hue), 50%, 80%);
     padding-block: 1vmin;
     font-size: 1vmin;
-    width: 40%;
 }
 
 .difficulty-selector {
@@ -377,6 +425,7 @@ body {
     align-items: center;
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 
 .edit-button {
@@ -385,7 +434,7 @@ body {
     background-color: hsla(var(--hue), 50%, 25%, 0.2);
     color: hsl(var(--hue), 80%, 90%);
     transition: background-color 0.25s ease-in-out;
-    border: 1px dashed hsl(var(--hue), 50%, 25%);
+    /* border: 1px dashed hsl(var(--hue), 50%, 25%); */
 }
 
 .edit-button:hover, .edit-button:focus {
@@ -394,7 +443,7 @@ body {
 
 .difficulty-selector > div {
     justify-content: center;
-    gap: 5vmin;
+    gap: 0.5vmin;
 }
 
 .difficulty {
@@ -402,8 +451,8 @@ body {
     width: 18vmin;
     height: 6vmin;
     background-color: hsla(var(--hue), 40%, 30%, 0.5);
-    border: 0.5px dashed hsl(var(--hue), 50%, 50%);
-    padding: 2vmin;
+    /* border: 0.25vmin dashed hsl(var(--hue), 50%, 50%); */
+    /* padding: 2vmin; */
     margin-block-end: 5vmin;;
     /* opacity: 0.5; */
     
@@ -416,7 +465,7 @@ body {
 }
 
 .difficulty:hover, .difficulty:focus {
-    background-color: hsl(var(--hue), 50%, 40%);
+    background-color: hsl(var(--hue), 50%, 30%);
 }
 
 .easy {
@@ -431,26 +480,17 @@ body {
     --hue: 0;
 }
 
-.game-ui input {
-    /* flex-shrink: 1; */
-    border: none;
-    background: none;
-    border-bottom: 1px solid hsl(var(--hue), 60%, 50%);
-    border-radius: 0.25vmin;
-    transition: border-bottom 0.25s ease-in-out;
-}
-
-.game-ui input:focus-within {
-    border-bottom: 1px solid hsl(var(--hue), 40%, 80%);
-}
-
 .game-ui input[type='radio'] {
     display: none;
 }
 
 .title-cont {
-    margin-bottom: 8vmin;
+    margin-bottom: 4vmin;
     user-select: none;
+    border: 0.25vmin dashed hsl(var(--hue), 50%, 65%);
+    padding: 2vmin;
+    background-color: hsla(var(--hue), 50%, 25%, 0.2);
+    box-shadow: 1vmin 1vmin 0 0 black;
 }
 
 .title {
@@ -461,7 +501,7 @@ body {
     --hue: 140;
     color: hsla(var(--hue), 100%, 75%, 0.8);
     font-size: 1vmin;
-    margin-right: -15%;
+    /* margin-right: -15%; */
     text-align: end;
 }
 
@@ -492,9 +532,9 @@ body {
 
 .error {
     --hue: 0;
-    color: hsl(var(--hue), 50%, 50%);
-    text-transform: uppercase;
+    color: hsl(var(--hue), 50%, 55%);
     display: none;
+    text-align: center;
 }
 
 .welcome {
@@ -528,13 +568,21 @@ body {
 input[name="difficulty"] + div {
     position: absolute;
     opacity: 0;
-    scale: 0;
+    scale: 0.95;
     transition: all 0.25s ease-in-out;
     inset: 0;
     top: 12vmin;
     font-size: 1.5vmin;
     user-select: none;
     pointer-events: none;
+    border: 0.1vmin solid hsl(var(--hue), 50%, 50%);
+    width: max-content;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vmin 2vmin;
+    background-color: hsla(var(--hue), 50%, 25%, 0.2);
 }
 
 input[name="difficulty"]:checked + div {

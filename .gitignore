@@ -1,0 +1,12 @@
+# Node Modules
+/node_modules
+
+# VSCode
+.vscode/
+
+# Package Files
+package-lock.json
+
+# Parcel
+.parcel-cache/
+dist/

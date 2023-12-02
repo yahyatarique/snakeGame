@@ -1,0 +1,30 @@
+{
+  "name": "snakegame",
+  "version": "1.0.1",
+  "description": "This is a vintage Snake Game trial, with a twist of roaming enemies on the board, made on the grid of CSS,, might port it to a canvas game later.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yahyatarique/snakeGame.git"
+  },
+  "keywords": [
+    "snakegame",
+    "snake",
+    "game",
+    "vintagegame"
+  ],
+  "author": "Yahya Tarique",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yahyatarique/snakeGame/issues"
+  },
+  "homepage": "https://snakegamebyyahya.netlify.app/",
+  "dependencies": {
+    "parcel": "^2.10.3"
+  }
+}

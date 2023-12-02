@@ -6,3 +6,7 @@
 
 # Package Files
 package-lock.json
+
+# Parcel
+.parcel-cache/
+dist/
